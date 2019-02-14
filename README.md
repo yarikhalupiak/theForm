@@ -1,4 +1,4 @@
-## The form 
+## The Form 
 
 Example of base classes for creating multi-step forms with containerization and the ability to add dynamic fields
 
