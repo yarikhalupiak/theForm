@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\FieldGenerator;
 
-use App\src\FieldGenerator\Exception\FieldsInvalidException;
+use App\FieldGenerator\Exception\FieldsInvalidException;
 
 class FieldsFactory
 {
@@ -206,9 +206,9 @@ class FieldsFactory
      * @param string $generate
      * @return array
      */
-    private function fieldFactory(string $parentKey, array $fieldsType, string $generate)
+    private function fieldFactory(string $parentKey, array $fieldsType, string $generate): array
     {
-        $data = [];
+        $fields = [];
 
         foreach ($fieldsType as $childKey => $type) {
             $values = $this->getFieldDefaultValues($type);
@@ -222,17 +222,17 @@ class FieldsFactory
 
             switch ($generate) {
                 case self::VALIDATORS:
-                    $data[$childKey] = $this->getInputValidator($type, $values);
+                    $fields[$childKey] = $this->getInputValidator($type, $values);
                     break;
                 case self::WIDGETS:
-                    $data[$childKey] = $this->getWidgetInput($type, $values);
+                    $fields[$childKey] = $this->getWidgetInput($type, $values);
                     break;
                 default:
                     throw new FieldsInvalidException('Invalid argument ' . $generate);
             }
         }
 
-        return $data;
+        return $fields;
     }
 
     /**
@@ -250,7 +250,7 @@ class FieldsFactory
      * @param string $childKey
      * @return bool
      */
-    private function hasFieldValues(string $parentKey, string $childKey)
+    private function hasFieldValues(string $parentKey, string $childKey): bool
     {
         return (
             isset($this->fields->getFieldsValues()[$parentKey][$childKey])
@@ -263,7 +263,7 @@ class FieldsFactory
      * @param array $defaultValues
      * @return array
      */
-    private function createFieldValues(array $values, array $defaultValues)
+    private function createFieldValues(array $values, array $defaultValues): array
     {
         $values = array_merge($defaultValues, $values);
 
