@@ -21,7 +21,7 @@ class ValidatorNumber extends ValidatorBase
      * @param array $options An array of values
      * @see ValidatorBase
      */
-    protected function configure($values, $options): void
+    protected function configure(array $values, array $options): void
     {
         $this->addValue('min', 1);
         $this->addValue('max', 100);
