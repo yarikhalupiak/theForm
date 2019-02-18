@@ -22,7 +22,7 @@ class ValidatorFile extends ValidatorBase
      * @param array $values An array of values
      * @see ValidatorBase
      */
-    protected function configure($values, $options): void
+    protected function configure(array $values, array $options): void
     {
         $this->addValue('extension_title', '');
         $this->addValue('extensions', '');
